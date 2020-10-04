@@ -1,1 +1,24 @@
-<h1>This is the Model's index page.</h1>
+<h1>Login to Tesla Motors</h1>
+
+<%= "Must include email and password" if @user && @user.errors.any? %>
+
+<form action= "/users" method="POST">
+
+    <p>
+        <label for="email">Email:</label>
+        <input type="text" name="email" id="email" />
+    </p>
+    <p>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" />
+    </p>
+
+    <input type="submit" />
+        
+    <p>
+        <a href="http://127.0.0.1:9294/">Home</a>
+        <a href="/users/login">Login</a>
+        <a href="/users/new">Signup</a>
+    </p>
+
+</form>

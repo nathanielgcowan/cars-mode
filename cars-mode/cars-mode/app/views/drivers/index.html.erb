@@ -1,8 +1,8 @@
-<h1>Signup</h1>
+<h1>Login to Tesla Motors</h1>
 
 <%= "Must include email and password" if @user && @user.errors.any? %>
 
-<form action= "/users" method="POST">
+<form action= "/drivers" method="POST">
 
     <p>
         <label for="email">Email:</label>
@@ -14,7 +14,7 @@
     </p>
 
     <input type="submit" />
-
+        
     <p>
         <a href="http://127.0.0.1:9294/">Home</a>
         <a href="/users/login">Login</a>
