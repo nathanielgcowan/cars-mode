@@ -1,1 +1,14 @@
-<h1>Insert the form to create a new instance of your model.</h1>
+<form action="/create_posts" method="post">
+  <ul>
+    <li>
+      <label for="model">model</label>
+      <input id="model" type="text" name="model" />
+    </li>
+    <li>
+      <label for="year">year</label>
+      <textarea id="year" type="text" name="year">
+      </textarea>
+    </li>
+  </ul>
+  <input type="submit" />
+</form>

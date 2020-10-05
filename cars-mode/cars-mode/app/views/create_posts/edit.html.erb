@@ -1,1 +1,18 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+  
+<form action="/create_post/<%= @car.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <ul>
+    <li>
+      <label for="model">model</label>
+      <input id="model" type="text" name="car[model]" value="<%= @car.model %>" />
+    </li>
+    <li>
+      <label for="year">year</label>
+      <textarea id="year" type="number" name="car[year]"  value="<%= @car.year %>">
+      </textarea>
+    </li>
+  </ul>
+  <input type="submit" />
+</form>
+
+</form>

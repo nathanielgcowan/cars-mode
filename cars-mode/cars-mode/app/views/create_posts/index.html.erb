@@ -1,1 +1,9 @@
-<h1>This is the Model's index page.</h1>
+<ul>
+<% @cars.each do |car| %>
+  <li>
+    <a href="/create_posts/<%= car.id %>">
+      <%= car.model %>
+    </a>
+  </li>
+<% end %>
+</ul>

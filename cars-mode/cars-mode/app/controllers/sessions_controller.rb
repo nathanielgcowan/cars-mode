@@ -8,11 +8,11 @@ class SessionsController < ApplicationController
   # POST: /sessions
   post "/sessions" do
     login(params[:email], params[:password])
-    redirect '/posts'
+    redirect '/create_posts'
   end
 
   get '/logout' do
     logout!
-    redirect '/posts'
+    redirect '/create_posts'
   end
 end
