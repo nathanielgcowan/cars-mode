@@ -17,46 +17,41 @@ class CreatePostsController < ApplicationController
 
   # new
   get "/create_posts/new" do
-    if !logged_in?
-      redirect "/login"
-    else
-      @car = CreatePost.new
       erb :"/create_posts/new.html"
-    end
   end
 
-  # create
   post "/create_posts" do
-      @car = CreatePost.create(params)
-      redirect "/create_posts"#{@car.id}"
+      @car = CreatePost.create(:model => params[:model], :year => params[:year])
+      redirect "/create_posts/#{@car.id}"
   end
 
   # show
   get "/create_posts/:id" do
-    @car = CreatePost.find(params[:id])
+    @car = CreatePost.find_by_id(params[:id])
     erb :"/create_posts/show.html"
   end
 
-  # edit
+  # edit load edit form
   get "/create_posts/:id/edit" do
-    if !logged_in?
-      redirect "/login"
-    else
       @car = CreatePost.find(params[:id])
       erb :"/create_posts/edit.html"
-    end
   end
 
-  # update
-  patch "/create_posts/:id" do
-    @car = CreatePost.find(params[:id])
-    @car.update(params[:create_posts])
+  patch "/create_posts/:id" do #edit action
+    @car = CreatePost.find_by_id(params[:id])
+    @car.model = params[:model]
+    @car.year = params[:year]
+    @car.save
     redirect to "/create_posts/#{@car.id}"
   end
 
   # destroy
-  delete "/create_posts/:id" do
-    CreatePost.destroy(params[:id])
-    redirect to "/create_post"
+  delete "/create_posts/:id" do #delete action
+    @car = CreatePost.find_by_id(params[:id])
+    @car.model = params[:model]
+    @car.year = params[:year]
+    @car.id = params[:id]
+    @car.delete
+    redirect to "/create_posts"
   end
 end

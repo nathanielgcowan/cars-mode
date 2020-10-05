@@ -2,3 +2,12 @@
 <h1><%= @car.model %></h1>
 <%= @car.year %>
 
+
+<form action="/create_posts/<%= @car.id %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="delete">
+</form>
+
+<form method="get" action="/create_posts/<%= @car.id %>/edit">
+    <button type="submit">Edit</button>
+</form>
