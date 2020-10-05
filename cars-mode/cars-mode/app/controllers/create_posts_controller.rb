@@ -33,8 +33,12 @@ class CreatePostsController < ApplicationController
 
   # edit load edit form
   get "/create_posts/:id/edit" do
+    if !logged_in?
+      redirect "/login"
+    else
       @car = CreatePost.find(params[:id])
       erb :"/create_posts/edit.html"
+    end
   end
 
   patch "/create_posts/:id" do #edit action
@@ -47,11 +51,15 @@ class CreatePostsController < ApplicationController
 
   # destroy
   delete "/create_posts/:id" do #delete action
-    @car = CreatePost.find_by_id(params[:id])
-    @car.model = params[:model]
-    @car.year = params[:year]
-    @car.id = params[:id]
-    @car.delete
-    redirect to "/create_posts"
+    if !logged_in?
+      redirect "/login"
+    else
+      @car = CreatePost.find_by_id(params[:id])
+      @car.model = params[:model]
+      @car.year = params[:year]
+      @car.id = params[:id]
+      @car.delete
+      redirect to "/create_posts"
+    end
   end
 end
