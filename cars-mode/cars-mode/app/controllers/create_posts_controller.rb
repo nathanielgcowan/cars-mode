@@ -37,9 +37,27 @@ class CreatePostsController < ApplicationController
       redirect "/login"
     else
       @car = CreatePost.find(params[:id])
-      erb :"/create_posts/edit.html"
+      @driver = Driver.find(:email => email)
+        if driver && driver.authenticate(password)
+          erb :"/create_posts/edit.html"
+        end
     end
   end
+
+  # #authenicate the user_id
+  # #if the right user id -> edit
+  # #not the right id -> do not edit
+  # #1)authenticate who can edit from
+
+  # def login(email, password)
+  #   driver = Driver.find_by(:email => email)
+  #   if driver && driver.authenticate(password)
+  #     session[:email] = driver.email
+  #   else
+  #     redirect '/login'
+  #   end
+  # end
+
 
   patch "/create_posts/:id" do #edit action
     @car = CreatePost.find_by_id(params[:id])
