@@ -17,7 +17,11 @@ class CreatePostsController < ApplicationController
 
   # new
   get "/create_posts/new" do
+    if current_driver
       erb :"/create_posts/new.html"
+    else 
+      redirect "/create_posts"
+    end
   end
 
   post "/create_posts" do
@@ -32,7 +36,10 @@ class CreatePostsController < ApplicationController
     if current_driver
       @car = CreatePost.find_by_id(params[:id])
       erb :"/create_posts/show.html"
+    else
+      redirect "/create_posts"
     end
+
   end
 
 
