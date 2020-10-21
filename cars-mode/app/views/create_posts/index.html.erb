@@ -1,0 +1,9 @@
+<ul>
+<% @cars.each do |car| %>
+  <li>
+    <a href="/create_posts/<%= car.id %>">
+      <%= car.model %>
+    </a>
+  </li>
+<% end %>
+</ul>
